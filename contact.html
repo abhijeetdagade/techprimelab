@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Database</title>
+    <link rel="stylesheet" href="commonStyles.css" />
+  </head>
+
+  <body>
+    <div id="links">
+      <div><a href="index.html">Home</a></div>
+      <div><a href="contact.html">Contact List</a></div>
+      <div><a href="favourites.html">Favourites</a></div>
+      <div><a href="login.html">login</a></div>
+    </div>
+    <main>
+      <table>
+        <thead>
+          <tr>
+            <th>project Name</th>
+            <th>Mobile Number</th>
+            <th>Type</th>
+            <th>Favourites</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Append your output to tbody -->
+        </tbody>
+      </table>
+    </main>
+  </body>
+  <script>
+    //code your var jobArr = JSON.parse(localStorage.getItem("jobList"));
+  
+
+
+// document
+//   .querySelector("#sortNames")
+//   .addEventListener("change", handleNameSort);
+
+var jobArr = JSON.parse(localStorage.getItem("contactList"));
+    displayData(jobArr);
+var bookMarkArr = JSON.parse(localStorage.getItem("favourites")) || [];
+
+function displayData(data) {
+  document.querySelector("tbody").innerHTML = "";
+  data.forEach(function (elem) {
+    var tr = document.createElement("tr");
+
+    var td1 = document.createElement("td");
+    td1.innerText = elem.personName;
+
+    var td2 = document.createElement("td");
+    td2.innerText = elem.personMobile;
+    var td3 = document.createElement("td");
+    td3.innerText = elem.persontype;
+
+    var td5 = document.createElement("td");
+    td5.innerText = "";
+    td5.style.color = "blue";
+    td5.style.cursor = "pointer";
+    td5.addEventListener("click", function () {
+      //writing logic here
+      bookMarkFun(elem);
+    });
+
+    tr.append(td1, td2, td3, td5);
+
+    document.querySelector("tbody").append(tr);
+  });
+}
+
+function bookMarkFun(elem) {
+  console.log(elem);
+  bookMarkArr.push(elem);
+  localStorage.setItem("favourites", JSON.stringify(bookMarkArr));
+}
+    //append your output to tbody
+  </script>
+</html>

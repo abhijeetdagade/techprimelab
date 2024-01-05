@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+
+  <body>
+    <div id="links">
+      <div><a href="index.html">Home</a></div>
+      <div><a href="contact.html">Contact List</a></div>
+      <div><a href="favourites.html">Favourites</a></div>
+      <div><a href="login.html">login</a></div>
+
+    </div>
+
+    <form id="form">
+      <h2>Enter Your Project Details</h2>
+      <input placeholder="Enter Project name" id="name" type="text" />
+      <input placeholder="Enter Mobile Number" type="number" id="mobile" />
+      <select id="type">
+        <option value="">Category</option>
+        <option value="Family">Quality A</option>
+        <option value="Friends">Quality B</option>
+        <option value="Others">Quality C</option>
+      </select>
+      <select id="type">
+        <option value="">Priority</option>
+        <option value="Family">High</option>
+        <option value="Friends">Medium</option>
+        <option value="Others">Low</option>
+      </select>
+      <select id="type">
+        <option value="">Type</option>
+        <option value="Family">Internal</option>
+        <option value="Friends">external</option>
+        <option value="Others">Both</option>
+      </select>
+      <input type="date" id="StartProject" name="StartDate">
+      <input type="date" id="EndProject" name="EndDate">
+      <input type="submit" value="Add project" />
+    </form>
+  </body>
+  <script>
+    //write js code here
+    // we are using form here, make sure you follow all steps of form
+    document.querySelector("#form").addEventListener("submit", jobSubmit);
+    var jobArr = JSON.parse(localStorage.getItem("contactList")) || [];
+
+    function jobSubmit() {
+      event.preventDefault();
+
+      // formId.inputId.value
+
+      var jobObj = {
+        personName: document.querySelector("#name").value,
+        personMobile: form.mobile.value,
+        persontype: form.type.value,
+      };
+      jobArr.push(jobObj);
+      console.log(jobArr);
+      localStorage.setItem("contactList", JSON.stringify(jobArr));
+      // redirect to applied jobs
+      window.location.href = "contact.html";
+    }
+  </script>
+</html>
